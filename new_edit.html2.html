@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>נראה שאתם טובים אם הגעתם לכאן...אבל שלא תתבלבלו זאת רק ההתחלה...</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>נִרְאֶה שֶׁאַתֶּם טוֹבִים אִם הִגַּעְתֶּם לְכָאן... אֲבָל שֶׁלֹּא תִּתְבַּלְבְּלוּ זֹאת רַק הַהַתְחָלָה...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght+400;700&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -235,26 +235,26 @@
 <body>
     <div class="container">
         <div class="victory-container">
-            <h1>חדר מספר 2: צופן המכבים - מסע בעקבות החנוכה</h1>
+            <h1>חֶדֶר מִסְפָּר 2: צֹפֶן הַמַּכַּבִּים - מַסָּע בְּעִקְבוֹת הַחֲנֻכָּה</h1>
             <p>
-                פתרתם את צופן 12 הספרות והוכחתם שאתם חוקרים מבריקים. 
-                עכשיו עליכם להתמודד עם כתב הסתרים האמיתי: צופן המכבים.
+                פִּתַּרְתֶּם אֶת צֹפֶן 12 הַסְּפָרוֹת וְהוֹכַחְתֶּם שֶׁאַתֶּם חוֹקְרִים מַבְרִיקִים. 
+                עַכְשָׁיו עֲלֵיכֶם לְהִתְמוֹדֵד עִם כְּתָב הַסְּתָרִים הָאֲמִתִּי: **צֹפֶן הַמַּכַּבִּים**.
             </p>
             <p>
-                הביטו בכתב העתיק שקיבלתם, ונסו לפענח את המסר המסתתר בתמונה!
+                הַבִּיטוּ בִּכְתָב הָעַתִּיק שֶׁקִּבַּלְתֶּם, וְנַסּוּ לְפַעְנֵחַ אֶת הַמֶּסֶר הַמִּסְתַּתֵּר בַּתְּמוּנָה!
             </p>
             
             <div class="challenge-box">
-                <h2>צופן המכבים</h2>
+                <h2>צֹפֶן הַמַּכַּבִּים</h2>
                 
                 <div class="image-container">
-                    <img src="secret_message.png.png" alt="כתב סתרים עתיק">
+                    <img src="secret_message.png.png" alt="כְּתָב סְתָרִים עַתִּיק">
                 </div>
                 
                 <div class="input-section">
                     <label for="locationInput"></label>
-                    <input type="text" id="locationInput" placeholder="הקלידו את הפתרון המלא">
-                    <button id="submitLocation">לחצו לבדיקה</button>
+                    <input type="text" id="locationInput" placeholder="הַקְלִידוּ אֶת הַפִּתְרוֹן הַמָּלֵא">
+                    <button id="submitLocation">לַחֲצוּ לִבְדִיקָה</button>
                     <div id="feedbackLocation"></div>
                 </div>
             </div>
@@ -266,7 +266,7 @@
         const CORRECT_sentence_NO_SPACES = "כלאחדהואאורקטןוכולנואוראיתן";
 
         // המשפט המלא והיפה לצורך הצגה בהודעת ההצלחה
-        const FULL_CORRECT_SENTENCE = "כל אחד הוא אור קטן וכולנו אור איתן";
+        const FULL_CORRECT_SENTENCE = "כָּל אֶחָד הוּא אוֹר קָטָן וְכֻלָּנוּ אוֹר אֵיתָן";
 
         // שם הקובץ לשלב הבא
         const NEXT_LEVEL_FILE = 'חדר בריחה חנוכה 03.html';
@@ -284,17 +284,17 @@
 
                 if (normalizedInput === CORRECT_sentence_NO_SPACES) {
                     // הצלחה
-                    feedbackElement.innerHTML = ` פענוח הצופן הצליח! `;
+                    feedbackElement.innerHTML = `✅ פִּעְנוּחַ הַצּוֹפֶן הִצְלִיחַ! הַמֶּסֶר: ${FULL_CORRECT_SENTENCE}`; // תיקון ל'צופן'
                     feedbackElement.className = 'correct show';
 
                     // העברה לעמוד הבא לאחר הצלחה
                     setTimeout(() => {
-                        window.location.href = NEXT_LEVEL_FILE;
+                        window.location.href = new_edit.html3.html;
                     }, 1500);
 
                 } else {
                     // כישלון
-                    feedbackElement.innerHTML = "❌ נסו שוב. הקפידו על איות מדויק. השתמשו במפתח הכתב העתיק!";
+                    feedbackElement.innerHTML = "❌ נַסּוּ שׁוּב. הַקְפִּידוּ עַל אִיּוּת מְדֻיָּק. הִשְׁתַּמְּשׁוּ בְּמַפְתֵּחַ הַכְּתָב הָעַתִּיק!";
                     feedbackElement.className = 'incorrect show';
                 }
             }, 100);
