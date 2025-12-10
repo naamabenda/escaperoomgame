@@ -15,9 +15,8 @@
         body {
             font-family: 'Heebo', sans-serif;
             min-height: 100vh;
-            
-            /* **תיקון: הסרת 'overflow: hidden;' או החלפה ל-'overflow-y: auto;' */
-            /* overflow: hidden; */ 
+            /* **הסרנו את overflow: hidden; כדי לאפשר גלילה ** */
+            overflow-x: hidden; /* מאפשר גלילה אנכית, מונע גלילה אופקית */
             
             position: relative;
             background-image: url('https://i.imgur.com/wC315yU.png');
@@ -26,10 +25,9 @@
             background-attachment: fixed;
             display: flex;
             justify-content: center;
-            /* **שינוי:** יישור תוכן לתחילת המסך כדי להתאים לגלילה */
-            align-items: flex-start; 
-            padding-top: 50px; /* ריפוד עליון כדי לרחק מהקצה */
-            padding-bottom: 50px; /* ריפוד תחתון */
+            align-items: flex-start; /* ודא שהתוכן מתחיל מלמעלה */
+            padding-top: 50px; 
+            padding-bottom: 50px;
         }
 
         /* אנימציות */
@@ -88,7 +86,6 @@
             z-index: 1;
             max-width: 800px;
             width: 90%;
-            /* ה-container לא צריך להיות בגובה 100% כדי לאפשר גלילה טבעית */
         }
 
         .welcome-box {
@@ -109,7 +106,9 @@
 
         .logo-icon {
             font-size: 5em;
-            animation: glow 3s ease-in-out infinite;
+            color: #FFD700; /* הוספת צבע לאייקון */
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            /* הסרת אנימציית ה-glow מהאייקון כדי למנוע כפילות */
         }
 
         h1 {
@@ -210,14 +209,113 @@
             margin-top: 20px;
             position: relative;
             overflow: hidden;
+            animation: gradient-shift 4s ease infinite; /* אנימציה נוספת לכפתור */
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .start-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition:
+        .start-button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.8);
+        }
+        
+        .start-button:active {
+            transform: scale(0.98);
+        }
+
+
+        @media (max-width: 600px) {
+            .welcome-box {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .description p {
+                font-size: 1em;
+            }
+
+            .start-button {
+                font-size: 1.5em;
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <div class="welcome-box">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+            </div>
+            <h1>חֶדֶר בְּרִיחָה חֲנֻכָּה</h1>
+            <p class="subtitle">הִצְטָרְפוּ לַמַּסָּע לִגְלוֹת אֶת סוֹדוֹת הֶחָג</p>
+
+            <div class="description">
+                <p><strong>אַתֶּם מְזֻמָּנִים לַחֲוָיָה שׁוֹבַת לֵב</strong> - חֶדֶר בְּרִיחָה וִירְטוּאָלִי הַמְּקַשֵּׁר אֶת נֵס חֲנֻכָּה לַצָּבָא, לְבִטָּחוֹן וּלְצְבָאִיוּת. אֶפְשָׁרוּת לְלְמִידָה וְהַעֲמָקַת יְדִיעוֹת בְּדֶרֶךְ חֲווּיָתִית וּמְעַנְיֶנֶת!</p>
+                <p>הַאִם תַּצְלִיחוּ לִפְתֹּר אֶת כָּל הַחִידוֹת וּלְהַדְלִיק אֶת כָּל נֵרוֹת הַחֲנֻכִּיָּה?</p>
+            </div>
+
+            <div class="input-section">
+                <label for="playerName">הַכְנִיסוּ אֶת שִׁמְכֶם כְּדֵי לְהַתְחִיל אֶת הַמִּשְׂחָק:</label>
+                <input type="text" id="playerName" placeholder="הַשֵּׁם שֶׁלִּי..." maxlength="50">
+            </div>
+
+            <button class="start-button">
+                הַתְחִילוּ מַסָּע!
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // פונקציה ליצירת כוכבים אקראיים לרקע
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numStars = 50; // מספר הכוכבים
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // פונקציה לטיפול בהתחלת המשחק (מעבר ל-new_edithtml1.html)
+        function startGame() {
+            const playerName = document.getElementById('playerName').value.trim();
+            const nextHtmlPage = 'new_edithtml1.html'; // היעד לשלב הבא
+
+            if (playerName === "") {
+                alert("אנא הכנס/י את שמך לפני שמתחילים את המסע!");
+                document.getElementById('playerName').focus();
+                return;
+            }
+
+            // שמירת שם השחקן ב-Session Storage
+            sessionStorage.setItem('hanukkahEscapePlayer', playerName);
+
+            // ניתוב לעמוד הבא
+            window.location.href = nextHtmlPage;
+        }
+
+        // הוספת מאזין אירועים לכפתור
+        document.querySelector('.start-button').addEventListener('click', startGame);
+
+        // קריאה לפונקציית יצירת הכוכבים
+        createStars();
+    </script>
+</body>
+</html>
