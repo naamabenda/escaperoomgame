@@ -277,12 +277,23 @@
     </div>
     
     <script>
-        // ** חשוב מאוד: החלף את 'Your-Repo-Name' בשם הריפוזיטורי המדויק שלך ב-GitHub! **
-        const repoName = 'Your-Repo-Name'; 
+        // *******************************************************************
+        // ** שינוי חובה: החלף את 'Your-Repo-Name' בשם הריפוזיטורי המדויק שלך!
+        // לדוגמה: אם הכתובת היא https://user.github.io/my-escape/, שנה ל-'my-escape'
+        const REPO_NAME = 'Your-Repo-Name'; 
+        // *******************************************************************
         
-        // לוגיקה לזיהוי אם האתר רץ ב-GitHub Pages ולקבוע את הנתיב הבסיסי
-        const isGithubPages = window.location.hostname.includes('github.io') && window.location.pathname.includes(`/${repoName}/`);
-        const basePath = isGithubPages ? `/${repoName}/` : '';
+        const isGithubPages = window.location.hostname.endsWith('github.io');
+
+        function getPath(fileName) {
+            if (isGithubPages) {
+                // יוצר נתיב מלא: /REPO_NAME/fileName.html
+                // ודא ששם הריפוזיטורי מתחיל בלי '/' ו-fileName לא מתחיל ב-'/'
+                return `/${REPO_NAME}/${fileName}`;
+            }
+            // הפעלה מקומית: נתיב ישיר
+            return fileName;
+        }
 
         // פונקציה ליצירת כוכבים אקראיים לרקע
         function createStars() {
@@ -298,14 +309,13 @@
             }
         }
 
-        // פונקציה לטיפול בהתחלת המשחק (מעבר ל-new_edithtml1.html)
+        // פונקציה לטיפול בהתחלת המשחק
         function startGame() {
             const playerName = document.getElementById('playerName').value.trim();
-            // שם קובץ היעד
             const targetFileName = 'new_edithtml1.html'; 
             
-            // יצירת הנתיב המלא: basePath + targetFileName
-            const nextHtmlPage = basePath + targetFileName; 
+            // שימוש בפונקציית הנתיב כדי לקבל את ה-URL הנכון עבור GitHub Pages או הפעלה מקומית
+            const nextHtmlPage = getPath(targetFileName); 
 
             if (playerName === "") {
                 alert("אנא הכנס/י את שמך לפני שמתחילים את המסע!");
@@ -313,10 +323,7 @@
                 return;
             }
 
-            // שמירת שם השחקן ב-Session Storage
             sessionStorage.setItem('hanukkahEscapePlayer', playerName);
-
-            // ניתוב לעמוד הבא עם הנתיב המתוקן
             window.location.href = nextHtmlPage;
         }
 
