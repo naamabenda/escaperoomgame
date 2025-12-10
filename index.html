@@ -15,8 +15,7 @@
         body {
             font-family: 'Heebo', sans-serif;
             min-height: 100vh;
-            /* **הסרנו את overflow: hidden; כדי לאפשר גלילה ** */
-            overflow-x: hidden; /* מאפשר גלילה אנכית, מונע גלילה אופקית */
+            overflow-x: hidden; 
             
             position: relative;
             background-image: url('https://i.imgur.com/wC315yU.png');
@@ -25,7 +24,7 @@
             background-attachment: fixed;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* ודא שהתוכן מתחיל מלמעלה */
+            align-items: flex-start; 
             padding-top: 50px; 
             padding-bottom: 50px;
         }
@@ -106,9 +105,8 @@
 
         .logo-icon {
             font-size: 5em;
-            color: #FFD700; /* הוספת צבע לאייקון */
+            color: #FFD700; 
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-            /* הסרת אנימציית ה-glow מהאייקון כדי למנוע כפילות */
         }
 
         h1 {
@@ -209,7 +207,7 @@
             margin-top: 20px;
             position: relative;
             overflow: hidden;
-            animation: gradient-shift 4s ease infinite; /* אנימציה נוספת לכפתור */
+            animation: gradient-shift 4s ease infinite; 
         }
         
         @keyframes gradient-shift {
@@ -279,10 +277,17 @@
     </div>
     
     <script>
+        // ** חשוב מאוד: החלף את 'Your-Repo-Name' בשם הריפוזיטורי המדויק שלך ב-GitHub! **
+        const repoName = 'Your-Repo-Name'; 
+        
+        // לוגיקה לזיהוי אם האתר רץ ב-GitHub Pages ולקבוע את הנתיב הבסיסי
+        const isGithubPages = window.location.hostname.includes('github.io') && window.location.pathname.includes(`/${repoName}/`);
+        const basePath = isGithubPages ? `/${repoName}/` : '';
+
         // פונקציה ליצירת כוכבים אקראיים לרקע
         function createStars() {
             const starsContainer = document.querySelector('.stars');
-            const numStars = 50; // מספר הכוכבים
+            const numStars = 50; 
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
@@ -296,7 +301,11 @@
         // פונקציה לטיפול בהתחלת המשחק (מעבר ל-new_edithtml1.html)
         function startGame() {
             const playerName = document.getElementById('playerName').value.trim();
-            const nextHtmlPage = 'new_edithtml1.html'; // היעד לשלב הבא
+            // שם קובץ היעד
+            const targetFileName = 'new_edithtml1.html'; 
+            
+            // יצירת הנתיב המלא: basePath + targetFileName
+            const nextHtmlPage = basePath + targetFileName; 
 
             if (playerName === "") {
                 alert("אנא הכנס/י את שמך לפני שמתחילים את המסע!");
@@ -307,8 +316,8 @@
             // שמירת שם השחקן ב-Session Storage
             sessionStorage.setItem('hanukkahEscapePlayer', playerName);
 
-            // ניתוב לעמוד הבא
-            window.location.href = new_edit.html1.html;
+            // ניתוב לעמוד הבא עם הנתיב המתוקן
+            window.location.href = nextHtmlPage;
         }
 
         // הוספת מאזין אירועים לכפתור
@@ -319,4 +328,3 @@
     </script>
 </body>
 </html>
-
