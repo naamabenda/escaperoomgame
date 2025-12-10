@@ -278,9 +278,9 @@
     
     <script>
         // *******************************************************************
-        // ** שינוי חובה: החלף את 'Your-Repo-Name' בשם הריפוזיטורי המדויק שלך!
+        // ** שינוי חובה: ודא שהשם הוא שם הריפוזיטורי המדויק שלך!
         // לדוגמה: אם הכתובת היא https://user.github.io/my-escape/, שנה ל-'my-escape'
-        const REPO_NAME = 'Your-Repo-Name'; 
+        const REPO_NAME = 'hanukkah-escape'; // ** זה מה שאתה צריך לבדוק! **
         // *******************************************************************
         
         const isGithubPages = window.location.hostname.endsWith('github.io');
@@ -288,7 +288,6 @@
         function getPath(fileName) {
             if (isGithubPages) {
                 // יוצר נתיב מלא: /REPO_NAME/fileName.html
-                // ודא ששם הריפוזיטורי מתחיל בלי '/' ו-fileName לא מתחיל ב-'/'
                 return `/${REPO_NAME}/${fileName}`;
             }
             // הפעלה מקומית: נתיב ישיר
@@ -312,9 +311,10 @@
         // פונקציה לטיפול בהתחלת המשחק
         function startGame() {
             const playerName = document.getElementById('playerName').value.trim();
+            
+            // היעד הוא הקובץ הבא שלך
             const targetFileName = 'index.html1'; 
             
-            // שימוש בפונקציית הנתיב כדי לקבל את ה-URL הנכון עבור GitHub Pages או הפעלה מקומית
             const nextHtmlPage = getPath(targetFileName); 
 
             if (playerName === "") {
@@ -335,4 +335,3 @@
     </script>
 </body>
 </html>
-
